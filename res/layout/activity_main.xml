@@ -1,0 +1,269 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="74dp" >
+
+                <EditText
+                    android:id="@+id/ipBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/servoAngleStatic"
+                    android:ems="10"
+                    android:text="192.168.42.1:1337" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:id="@+id/status_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignRight="@+id/ipBox"
+                    android:layout_marginRight="35dp"
+                    android:text="@string/main_title"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/servoAngleStatic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/ipBox"
+                    android:layout_alignBottom="@+id/ipBox"
+                    android:layout_alignParentLeft="true"
+                    android:text="ip:port" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="293dp"
+                android:layout_height="177dp" >
+
+                <TextView
+                    android:id="@+id/conn_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/connected_str"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/motorPwr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/conn_status"
+                    android:text="@string/response_time"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                <TextView
+                    android:id="@+id/respBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/motorPwr"
+                    android:layout_alignBottom="@+id/motorPwr"
+                    android:layout_centerHorizontal="true"
+                    android:text="0 us" />
+
+                <TextView
+                    android:id="@+id/servoAngle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/motorPwr"
+                    android:text="Response time:" />
+
+                <TextView
+                    android:id="@+id/rttBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/servoAngle"
+                    android:layout_alignBottom="@+id/servoAngle"
+                    android:layout_alignLeft="@+id/respBox"
+                    android:layout_alignParentRight="true"
+                    android:text="0 ms" />
+
+                <Button
+                    android:id="@+id/disconnectBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/connectBtn"
+                    android:layout_alignBottom="@+id/connectBtn"
+                    android:layout_toRightOf="@+id/connectBtn"
+                    android:enabled="false"
+                    android:onClick="onDisconnectRobot"
+                    android:text="Disconnect" />
+
+                <Button
+                    android:id="@+id/killBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/disconnectBtn"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/disconnectBtn"
+                    android:enabled="false"
+                    android:onClick="onKill"
+                    android:text="Execute" />
+
+                <Button
+                    android:id="@+id/connectBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/servoAngle"
+                    android:onClick="onConnectRobot"
+                    android:text="Connect" />
+
+                <CheckBox
+                    android:id="@+id/killChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/killBtn"
+                    android:layout_alignBottom="@+id/killBtn"
+                    android:layout_alignRight="@+id/connectBtn"
+                    android:enabled="false"
+                    android:onClick="onShutdownFlip"
+                    android:text="Shutdown      " />
+
+                <TextView
+                    android:id="@+id/connBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/respBox"
+                    android:layout_alignParentTop="true"
+                    android:text="DISCONNECTED" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="326dp" >
+
+                <CheckBox
+                    android:id="@+id/sonarChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="19dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:onClick="sonarFlip"
+                    android:text="Sonar enabled" />
+
+                <CheckBox
+                    android:id="@+id/magChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/sonarChk"
+                    android:layout_marginLeft="32dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:onClick="magFlip"
+                    android:text="Magnetometer enabled" />
+
+                <CheckBox
+                    android:id="@+id/gyroChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/magChk"
+                    android:layout_marginLeft="32dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:onClick="gyroFlip"
+                    android:text="Gyro enabled" />
+
+                <CheckBox
+                    android:id="@+id/accelChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/gyroChk"
+                    android:layout_marginLeft="32dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:onClick="accelFlip"
+                    android:text="Accelerometer enabled" />
+
+                <CheckBox
+                    android:id="@+id/servoChk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/accelChk"
+                    android:layout_marginLeft="32dp"
+                    android:checked="false"
+                    android:enabled="false"
+                    android:onClick="servoFlip"
+                    android:text="Servo enabled" />
+
+                <Button
+                    android:id="@+id/driveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/statsBtn"
+                    android:layout_alignBottom="@+id/statsBtn"
+                    android:layout_alignRight="@+id/magChk"
+                    android:enabled="false"
+                    android:onClick="onOpenDrivingActivity"
+                    android:text="Drive Mode" />
+
+                <Button
+                    android:id="@+id/statsBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/servoChk"
+                    android:layout_marginTop="34dp"
+                    android:layout_toLeftOf="@+id/driveBtn"
+                    android:enabled="false"
+                    android:onClick="onOpenStatisticsActivity"
+                    android:text="Stats" />
+
+                <Button
+                    android:id="@+id/gyroBtn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/servoChk"
+                    android:layout_marginRight="14dp"
+                    android:enabled="false"
+                    android:onClick="onOpenGyroDrive"
+                    android:text="Gyro" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

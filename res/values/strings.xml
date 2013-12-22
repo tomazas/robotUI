@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RobotUI</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_title">Robot Status</string>
+    <string name="connected_str">Connection status:   </string>
+    <string name="response_time">Processing time:</string>
+    <string name="title_activity_driving">DrivingActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_stat">StatActivity</string>
+    <string name="title_activity_gyro_drive">GyroDriveActivity</string>
+
+</resources>

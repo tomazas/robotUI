@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/metal_bg"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".GyroDriveActivity" >
+
+    <TextView
+        android:id="@+id/systats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="x=" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/systats"
+        android:layout_below="@+id/systats"
+        android:text="y=" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:text="z=" />
+
+    <TextView
+        android:id="@+id/xcoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/systats"
+        android:layout_toRightOf="@+id/systats"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/ycoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/xcoord"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/zcoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/ycoord"
+        android:text="0" />
+
+    <lt.tomasu.robotui.Drawer
+        android:id="@+id/surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/gyroBtn"
+        android:layout_marginLeft="47dp"
+        android:layout_toLeftOf="@+id/gyroBtn"
+        android:layout_toRightOf="@+id/zcoord" />
+
+    <Button
+        android:id="@+id/gyroBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/zcoord"
+        android:layout_alignParentRight="true"
+        android:enabled="true"
+        android:text="Forward" />
+
+    <Button
+        android:id="@+id/driveBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/surface"
+        android:layout_alignLeft="@+id/gyroBtn"
+        android:layout_marginBottom="47dp"
+        android:enabled="true"
+        android:text="Reverse" />
+
+    <SeekBar
+        android:id="@+id/gyroSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/surface"
+        android:layout_alignTop="@+id/xcoord"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/xcoord"
+        android:max="255"
+        android:progress="120" />
+
+    <TextView
+        android:id="@+id/textMotorSpdLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gyroSpeed"
+        android:layout_alignLeft="@+id/gyroSpeed"
+        android:text="Motor speed:    " />
+
+    <TextView
+        android:id="@+id/textMotorSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gyroBtn"
+        android:layout_toRightOf="@+id/textMotorSpdLabel"
+        android:text="0" />
+
+</RelativeLayout>
